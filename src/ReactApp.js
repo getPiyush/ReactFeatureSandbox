@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import FunctionalComp from "./FunctionalComp";
 import ReactComp from "./ReactComp";
-import ReactCComp from "./ReactCComp";
+import InputComp from "./InputComp";
+import StringTable from "./StringTable";
+import StringModifier from "./StringModifier";
+
 class ReactApp extends Component {
   // fake authentication Promise
 
@@ -10,7 +13,7 @@ class ReactApp extends Component {
     this.child = React.createRef();
     this.counter = 0;
     this.state = {
-      message: "Parent"
+      message: "This is the default message!"
     };
   }
 
@@ -44,13 +47,18 @@ class ReactApp extends Component {
         <button onClick={this.secondButtonClicked}>
           Dont update state, just the counter!
         </button>
-        <FunctionalComp message={this.state.message} />
-        <ReactComp message={this.state.message} />
-        <ReactCComp
-          message={this.counter}
+        <StringTable str={this.state.message} type="dropdown" />
+        <InputComp
+          message={this.state.message}
           buttonEventHolder={this.buttonClicked}
           textEventHolder={this.updateMessage}
         />
+        <StringModifier message={this.state.message} />
+
+        <FunctionalComp message={this.state.message} />
+        <ReactComp message={this.state.message} />
+
+        <StringTable str={this.state.message} type="list" />
       </div>
     );
   }

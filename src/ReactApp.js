@@ -12,6 +12,7 @@ class ReactApp extends Component {
     super(props);
     this.child = React.createRef();
     this.counter = 0;
+    this.messageArray = [];
     this.state = {
       message: "This is the default message!"
     };
@@ -32,10 +33,19 @@ class ReactApp extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => {
+    setInterval(() => {
       this.counter++;
       this.setState({ message: "State Changed on timeOut " + this.counter });
-    }, 50000);
+    }, 1000);
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // Typical usage (don't forget to compare props):
+    if (this.state.message.length !== prevState.message.length) {
+      this.messageArray.push(this.state.message);
+    }
+    console.log(prevProps);
+    console.log("Message array length = " + this.messageArray.length);
   }
 
   render() {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { logMessages } from "./utils";
 
 class StringTable extends Component {
   render() {
@@ -14,6 +15,7 @@ class StringTable extends Component {
     });
 
     wordLength = rendered.length;
+    logMessages(wordLength);
 
     if (this.props.type === "list") rendered = <li>{rendered}</li>;
 

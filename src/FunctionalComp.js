@@ -1,7 +1,7 @@
 import React from "react";
 
 function FunctionalComp({ message }) {
-  return <div>{`FunctionalComp message= ${message}`}</div>;
+  return <div>{message}</div>;
 }
 
 export default FunctionalComp;
